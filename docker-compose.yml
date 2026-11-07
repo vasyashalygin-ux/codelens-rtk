@@ -1,0 +1,19 @@
+services:
+  codelens:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      # модель должна совпадать при индексировании и поиске (хранится в коллекции)
+      CODELENS_MODEL: ${CODELENS_MODEL:-intfloat/multilingual-e5-large}
+      CODELENS_HYBRID: "1"
+      # для LLM-режима через Ollama на хосте раскомментируйте:
+      # CODELENS_LLM_BACKEND: ollama
+      # CODELENS_OLLAMA_HOST: http://host.docker.internal:11434
+    volumes:
+      - hf_cache:/app/.cache/huggingface   # кэш скачанной модели между перезапусками
+      - chroma_data:/app/chroma_db          # персистентный индекс
+
+volumes:
+  hf_cache:
+  chroma_data:

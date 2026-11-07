@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+chroma_db/
+gymhero/
+results.json
+.DS_Store
+.streamlit/secrets.toml
+*.egg-info/
+.cache/
